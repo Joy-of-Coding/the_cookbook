@@ -6,6 +6,22 @@ __pycache__
 db.sqlite3
 media
 
+# Frontend #
+frontend/node_modules
+frontend/.pnp
+frontend/.pnp.js
+
+# testing
+frontend/coverage
+
+# production
+frontend/build
+
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+
 # Backup files # 
 *.bak 
 
