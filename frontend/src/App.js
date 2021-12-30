@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { Chip } from '@mui/material';
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import DataDisplay from "./components/DataDisplay";
 
 class App extends Component {
   constructor(props) {
@@ -7,13 +11,13 @@ class App extends Component {
     this.state = {
       data: [],
       loaded: false,
-      placeholder: "Loading"
+      placeholder: "Loading",
     };
   }
 
   componentDidMount() {
     fetch("/api/recipe")
-      .then(response => {
+      .then((response) => {
         if (response.status > 400) {
           return this.setState(() => {
             return { placeholder: "Something went wrong!" };
@@ -21,11 +25,11 @@ class App extends Component {
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         this.setState(() => {
           return {
             data,
-            loaded: true
+            loaded: true,
           };
         });
       });
@@ -33,15 +37,11 @@ class App extends Component {
 
   render() {
     return (
-      <ul sx={{ display: "flex", width: 1}}>
-        {this.state.data.map(recipe => {
-          return (
-            <li key={recipe.id}>
-              <Chip label={recipe.name} sx={{my: 2, px: 3, py: 1}} />
-            </li>
-          );
-        })}
-      </ul>
+      <ThemeProvider theme={theme}>
+        <Header />
+        <DataDisplay data={this.state.data} />
+        <Footer />
+      </ThemeProvider>
     );
   }
 }
