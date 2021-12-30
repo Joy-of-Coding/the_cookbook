@@ -19,7 +19,7 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header />
-        <div style={{ minHeight: "80vh", padding: "22px" }}>
+        <div style={{ minHeight: "70vh", padding: "22px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/help" element={<Help />} />
