@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Box, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { LocalLibrary, Home, HelpCenter } from "@mui/icons-material";
 
@@ -14,9 +15,27 @@ export default function Footer(props) {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Recipes" icon={<LocalLibrary />} />
-        <BottomNavigationAction label="Home" icon={<Home />} />
-        <BottomNavigationAction label="Help" icon={<HelpCenter />} />
+        <BottomNavigationAction
+          component={Link}
+          to="/recipes"
+          label="Recipes"
+          value="recipes"
+          icon={<LocalLibrary />}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to="/"
+          label="Home"
+          value="home"
+          icon={<Home />}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to="/help"
+          label="Help"
+          value="help"
+          icon={<HelpCenter />}
+        />
       </BottomNavigation>
     </Box>
   );

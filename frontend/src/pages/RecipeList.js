@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "./theme";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import DataDisplay from "./components/DataDisplay";
+import DataDisplay from "../components/DataDisplay";
 
-class App extends Component {
+class RecipeList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,13 +33,11 @@ class App extends Component {
 
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <Header />
+      <div>
         <DataDisplay data={this.state.data} />
-        <Footer />
-      </ThemeProvider>
+      </div>
     );
   }
 }
 
-export default App;
+export default RecipeList;

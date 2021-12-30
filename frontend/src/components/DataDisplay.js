@@ -3,7 +3,7 @@ import { Chip, Container } from "@mui/material";
 export default function DataDisplay(props) {
   return (
     <Container>
-      <ul sx={{ display: "flex" }} style={{ minHeight: "80vh" }}>
+      <ul sx={{ display: "flex" }}>
         {props.data.map((recipe) => {
           return (
             <li key={recipe.id}>
