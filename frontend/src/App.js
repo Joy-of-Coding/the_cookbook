@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Chip } from '@mui/material';
 
 class App extends Component {
   constructor(props) {
@@ -32,11 +33,11 @@ class App extends Component {
 
   render() {
     return (
-      <ul>
+      <ul sx={{ display: "flex", width: 1}}>
         {this.state.data.map(recipe => {
           return (
             <li key={recipe.id}>
-              {recipe.name} - {recipe.author}
+              <Chip label={recipe.name} sx={{my: 2, px: 3, py: 1}} />
             </li>
           );
         })}
