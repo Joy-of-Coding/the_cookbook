@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import RecipeList from "./pages/RecipeList";
 import Home from "./pages/Home";
 import Help from "./pages/Help";
+import TestingArea from "./pages/TestingArea";
 
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -17,13 +18,14 @@ import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <BrowserRouter>   
         <Header />
         <div style={{ minHeight: "70vh", padding: "22px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/help" element={<Help />} />
             <Route path="/recipes" element={<RecipeList />} />
+            <Route path="/testing" element={<TestingArea />} />
           </Routes>
         </div>
         <Footer />
