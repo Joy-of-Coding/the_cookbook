@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import SchoolIcon from "@mui/icons-material/School";
 
-export default function RecipeConcepts() {
+export default function RecipeConcepts(props) {
   const [checked, setChecked] = useState([0]);
 
   const handleToggle = (value) => () => {
@@ -28,14 +28,25 @@ export default function RecipeConcepts() {
 
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-      {[0, 1, 2, 3].map((value) => {
-        const labelId = `checkbox-list-label-${value}`;
+      {props.concepts.map((concept, index) => {
+        const labelId = `recipe-concept-${concept.title}`;
+
+        const learning_url =
+          concept.learning_link.indexOf("http://") === 0 ||
+          concept.learning_link.indexOf("https://") === 0
+            ? concept.learning_link
+            : "https://" + concept.learning_link;
 
         return (
           <ListItem
-            key={value}
+            key={concept.title}
             secondaryAction={
-              <IconButton edge="end" color="info" aria-label="Learn">
+              <IconButton
+                edge="end"
+                color="info"
+                aria-label="Learn"
+                href={learning_url}
+              >
                 <SchoolIcon />
               </IconButton>
             }
@@ -43,22 +54,19 @@ export default function RecipeConcepts() {
           >
             <ListItemButton
               role={undefined}
-              onClick={handleToggle(value)}
+              onClick={handleToggle(index)}
               dense
             >
               <ListItemIcon>
                 <Checkbox
                   edge="start"
-                  checked={checked.indexOf(value) !== -1}
+                  checked={checked.indexOf(index) !== -1}
                   tabIndex={-1}
                   disableRipple
                   inputProps={{ "aria-labelledby": labelId }}
                 />
               </ListItemIcon>
-              <ListItemText
-                id={labelId}
-                primary={`Important Concept #${value + 1}`}
-              />
+              <ListItemText id={labelId} primary={concept.title} />
             </ListItemButton>
           </ListItem>
         );

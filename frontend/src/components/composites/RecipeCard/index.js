@@ -7,12 +7,10 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  Tooltip,
-  CircularProgress,
 } from "@mui/material";
 import RecipeCardModal from "./RecipeCardModal";
 
-export default function RecipeCard() {
+export default function RecipeCard(props) {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -20,22 +18,20 @@ export default function RecipeCard() {
       <CardActionArea
         onClick={() => {
           setModalOpen(true);
-          console.log(modalOpen);
         }}
       >
         <CardMedia
           component="img"
           height="220"
-          image="https://mui.com/static/branding/store-templates/template-dark5.jpeg"
-          alt="?"
+          image={props.img_link}
+          alt="card illustration"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Using MUI in your React application.
+            {props.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Learn how to use the Material UI library to build your frontend and
-            create professional, minimalist, and stylish interface designs.
+            {props.summary}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -43,12 +39,12 @@ export default function RecipeCard() {
         <Button size="small" color="primary" variant="contained">
           Bookmark
         </Button>
-        <Tooltip title="In Progress">
-          <CircularProgress variant="determinate" value={50} sx={{ p: 1 }} />
-        </Tooltip>
       </CardActions>
       <RecipeCardModal
         isOpen={modalOpen}
+        concepts={props.concepts}
+        steps={props.steps}
+        tips={props.tips}
         handleClose={() => {
           setModalOpen(false);
         }}

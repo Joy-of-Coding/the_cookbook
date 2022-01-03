@@ -31,15 +31,15 @@ export default function RecipeCardModal(props) {
           <Typography sx={{ pb: 2 }} variant="h4" component="div">
             Important Concepts
           </Typography>
-          <RecipeConcepts />
+          <RecipeConcepts concepts={props.concepts} />
           <Typography sx={{ py: 2 }} variant="h4" component="div">
             Implementation Steps
           </Typography>
-          <RecipeSteps />
+          <RecipeSteps steps={props.steps} />
           <Typography sx={{ py: 2 }} variant="h4" component="div">
             Debugging Tips
           </Typography>
-          <RecipeDebuggingTips />
+          <RecipeDebuggingTips tips={props.tips} />
         </CardContent>
         <CardActions>
           <Button size="small" color="success" variant="contained">

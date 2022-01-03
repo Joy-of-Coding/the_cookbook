@@ -1,17 +1,14 @@
-import { Chip, Container } from "@mui/material";
+import { Stack, Box } from "@mui/material";
+import RecipeCard from "./composites/RecipeCard";
 
 export default function DataDisplay(props) {
   return (
-    <Container>
-      <ul sx={{ display: "flex" }}>
-        {props.data.map((recipe) => {
-          return (
-            <li key={recipe.id}>
-              <Chip label={recipe.name} sx={{ my: 2, px: 3, py: 1 }} />
-            </li>
-          );
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Stack spacing={2}>
+        {props.data.map((recipe, index) => {
+          return <RecipeCard key={`recipe-${index}`} {...recipe} />;
         })}
-      </ul>
-    </Container>
+      </Stack>
+    </Box>
   );
 }

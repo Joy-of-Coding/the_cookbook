@@ -1,43 +1,27 @@
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
 import DataDisplay from "../components/DataDisplay";
 
-class RecipeList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      loaded: false,
-      placeholder: "Loading",
-    };
-  }
+export default function RecipeList() {
+  const [recipes, setRecipes] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     fetch("/api/recipe")
       .then((response) => {
         if (response.status > 400) {
-          return this.setState(() => {
+          return setRecipes(() => {
             return { placeholder: "Something went wrong!" };
           });
         }
         return response.json();
       })
       .then((data) => {
-        this.setState(() => {
-          return {
-            data,
-            loaded: true,
-          };
-        });
+        setRecipes(data);
       });
-  }
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <DataDisplay data={this.state.data} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <DataDisplay data={recipes} />
+    </div>
+  );
 }
-
-export default RecipeList;

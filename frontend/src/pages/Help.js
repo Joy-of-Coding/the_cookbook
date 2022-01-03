@@ -1,4 +1,4 @@
-export default function Help(props) {
+export default function Help() {
   return (
     <div>
       <h1>Help</h1>
