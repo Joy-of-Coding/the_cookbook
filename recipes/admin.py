@@ -7,4 +7,4 @@ from .models import Recipe, RecipeDebuggingTip, RecipeConcept, RecipeStep
 models = [Recipe, RecipeDebuggingTip, RecipeConcept, RecipeStep]
 
 for model in models:
-    admin.register(model)
+    admin.site.register(model)

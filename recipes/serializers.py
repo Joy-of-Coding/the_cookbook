@@ -1,39 +1,26 @@
-from rest_framework.serializers import SerializerMethodField, ModelSerializer
+from rest_framework.serializers import ModelSerializer
 from .models import Recipe, RecipeConcept, RecipeDebuggingTip, RecipeStep
-from rest_framework.renderers import JSONRenderer
 
 class RecipeConceptSerializer(ModelSerializer):
     class Meta:
         model = RecipeConcept
-        fields = ('title', 'learning_link', 'recipe')
+        fields = ['title', 'learning_link']
 
 class RecipeStepSerializer(ModelSerializer):
     class Meta:
         model = RecipeStep
-        fields = ('title', 'text_content', 'recipe')
+        fields = ['title', 'text_content']
 
 class RecipeTipSerializer(ModelSerializer):
     class Meta:
         model = RecipeDebuggingTip
-        fields = ('content', 'recipe')
+        fields = ['content']
 
 class RecipeSerializer(ModelSerializer):
-    concepts = SerializerMethodField()
-    steps = SerializerMethodField()
-    tips = SerializerMethodField()
-
-    def get_concepts(self, obj):
-        # TODO
-        return []
-    
-    def get_steps(self, obj):
-        # TODO
-        return []
-        
-    def get_tips(self, obj):
-        # TODO
-        return []
+    concepts = RecipeConceptSerializer(many=True, read_only=True, source='recipe_concept')
+    steps = RecipeStepSerializer(many=True, read_only=True, source='recipe_step')
+    tips = RecipeTipSerializer(many=True, read_only=True, source='recipe_tip')
         
     class Meta:
         model = Recipe
-        fields = ('title', 'summary', 'img_link', 'concepts', 'steps', 'tips', 'created_at', 'updated_at')
+        fields = ['title', 'summary', 'img_link', 'concepts', 'steps', 'tips', 'created_at', 'updated_at']
