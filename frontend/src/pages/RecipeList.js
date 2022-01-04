@@ -5,7 +5,7 @@ export default function RecipeList() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetch("/api/recipe")
+    fetch("/api/recipes")
       .then((response) => {
         if (response.status > 400) {
           return setRecipes(() => {
