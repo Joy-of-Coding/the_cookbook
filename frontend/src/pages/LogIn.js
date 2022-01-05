@@ -16,7 +16,7 @@ export default function LogIn() {
           minHeight: "600px",
         }}
       >
-        <AccountForm newAccount={registering} />
+        <AccountForm isMakingNewAccount={registering} />
 
         <Button
           sx={{ textAlign: "center", py: 1, mt: 2 }}
