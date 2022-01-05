@@ -1,10 +1,9 @@
-import React from "react";
 import { TextField, Button, Box } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 
 // Based on code from: https://levelup.gitconnected.com/using-react-hook-form-with-material-ui-components-ba42ace9507a
 
-const AccountForm = ({ handleClose, newAccount }) => {
+const AccountForm = ({ handleClose, isMakingNewAccount }) => {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
@@ -26,7 +25,7 @@ const AccountForm = ({ handleClose, newAccount }) => {
           borderColor: "primary.main",
         }}
       >
-        {newAccount && (
+        {isMakingNewAccount && (
           <>
             <Controller
               name="firstName"
@@ -107,7 +106,7 @@ const AccountForm = ({ handleClose, newAccount }) => {
           rules={{ required: "Password required" }}
         />
         <div>
-          {newAccount ? (
+          {isMakingNewAccount ? (
             <Button
               type="submit"
               variant="contained"

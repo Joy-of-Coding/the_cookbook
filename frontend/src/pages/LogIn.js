@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Button } from "@mui/material";
-import AccountForm from "../components/AccountForm";
+import AccountForm from "../components/forms/AccountForm";
 
 export default function LogIn() {
   const [registering, setRegistering] = useState(false);

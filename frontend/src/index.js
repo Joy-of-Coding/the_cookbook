@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import Help from "./pages/Help";
 import TestingArea from "./pages/TestingArea";
 import LogIn from "./pages/LogIn";
+import RecipeCRUD from "./pages/RecipeCRUD";
 
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -26,6 +27,7 @@ ReactDOM.render(
             <Route path="/" element={<Home />} />
             <Route path="/help" element={<Help />} />
             <Route path="/recipes" element={<RecipeList />} />
+            <Route path="/recipes/crud" element={<RecipeCRUD />} />
             <Route path="/testing" element={<TestingArea />} />
             <Route path="/login" element={<LogIn />} />
           </Routes>
