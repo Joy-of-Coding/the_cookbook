@@ -1,5 +1,6 @@
 import { Grid, Box, Alert, AlertTitle } from "@mui/material";
 import RecipeCard from "./composites/RecipeCard";
+import AutocompleteSearch from "./utility/AutocompleteSearch";
 
 export default function DataDisplay(props) {
   return (
@@ -13,7 +14,7 @@ export default function DataDisplay(props) {
         justifyContent: "center",
         alignItems: "center",
         alignContent: "center",
-        p: 8,
+        p: 2,
       }}
     >
       {!(props.data && props.data.length > 0) ? (
@@ -23,15 +24,29 @@ export default function DataDisplay(props) {
           <strong>Please add data to the database.</strong>
         </Alert>
       ) : (
-        <Grid container spacing={12} justifyContent="center">
-          {props.data.map((recipe, index) => {
-            return (
-              <Grid key={`recipe-${index}`} item>
-                <RecipeCard {...recipe} />
-              </Grid>
-            );
-          })}
-        </Grid>
+        <>
+          <Box
+            sx={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "end",
+              pb: 2,
+            }}
+          >
+            <AutocompleteSearch
+              autocompleteOptions={props.data.map((recipe) => recipe.title)}
+            />
+          </Box>
+          <Grid container spacing={12} justifyContent="center">
+            {props.data.map((recipe, index) => {
+              return (
+                <Grid key={`recipe-${index}`} item>
+                  <RecipeCard {...recipe} />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </>
       )}
     </Box>
   );
