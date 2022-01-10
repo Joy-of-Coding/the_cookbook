@@ -11,7 +11,7 @@ import {
 import SchoolIcon from "@mui/icons-material/School";
 
 export default function RecipeConcepts(props) {
-  const [checked, setChecked] = useState([0]);
+  const [checked, setChecked] = useState([]);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
