@@ -1,4 +1,4 @@
-import { Stack, Box, Alert, AlertTitle } from "@mui/material";
+import { Grid, Box, Alert, AlertTitle } from "@mui/material";
 import RecipeCard from "./composites/RecipeCard";
 
 export default function DataDisplay(props) {
@@ -8,12 +8,12 @@ export default function DataDisplay(props) {
         display: "flex",
         flexDirection: "column",
         minHeight: "30vh",
-        width: "50%",
+        width: "70%",
         mx: "auto",
         justifyContent: "center",
         alignItems: "center",
         alignContent: "center",
-        mt: 2,
+        p: 8,
       }}
     >
       {!(props.data && props.data.length > 0) ? (
@@ -23,11 +23,15 @@ export default function DataDisplay(props) {
           <strong>Please add data to the database.</strong>
         </Alert>
       ) : (
-        <Stack spacing={2}>
+        <Grid container spacing={12} justifyContent="center">
           {props.data.map((recipe, index) => {
-            return <RecipeCard key={`recipe-${index}`} {...recipe} />;
+            return (
+              <Grid key={`recipe-${index}`} item>
+                <RecipeCard {...recipe} />
+              </Grid>
+            );
           })}
-        </Stack>
+        </Grid>
       )}
     </Box>
   );
