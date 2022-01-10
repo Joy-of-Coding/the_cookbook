@@ -1,20 +1,25 @@
 import { useState } from "react";
 import {
-  Button,
+  IconButton,
   CardActionArea,
   CardActions,
   Card,
   CardContent,
   CardMedia,
   Typography,
+  Tooltip,
 } from "@mui/material";
 import RecipeCardModal from "./RecipeCardModal";
+import StarIcon from "@mui/icons-material/Star";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 export default function RecipeCard(props) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [starred, setStarred] = useState(false);
+  let borderStyle = starred ? "primary.main" : "transparent";
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, border: 3, borderColor: borderStyle }}>
       <CardActionArea
         onClick={() => {
           setModalOpen(true);
@@ -36,9 +41,19 @@ export default function RecipeCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Button size="small" color="primary" variant="contained">
-          Bookmark
-        </Button>
+        <Tooltip title={starred ? "Un-Star" : "Star"} placement="right-start">
+          <IconButton
+            size="small"
+            color={starred ? "error" : "primary"}
+            variant="outlined"
+            sx={{ border: 2 }}
+            onClick={() => {
+              setStarred(!starred);
+            }}
+          >
+            {starred ? <CancelIcon /> : <StarIcon />}
+          </IconButton>
+        </Tooltip>
       </CardActions>
       <RecipeCardModal
         isOpen={modalOpen}
