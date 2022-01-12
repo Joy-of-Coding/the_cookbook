@@ -36,7 +36,7 @@ export default function Header() {
               <img
                 alt="joy of coding logo"
                 src={img_logo}
-                style={{ height: "64px", padding: "8px" }}
+                style={{ height: "64px", padding: "8px", marginRight: "8px" }}
               />
               <Typography variant="h4" sx={{ fontWeight: "bold" }}>
                 Cookbook
