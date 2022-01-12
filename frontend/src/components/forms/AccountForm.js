@@ -1,4 +1,4 @@
-import { TextField, Button, Box } from "@mui/material";
+import { TextField, Button, Paper } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 
 // Based on code from: https://levelup.gitconnected.com/using-react-hook-form-with-material-ui-components-ba42ace9507a
@@ -12,7 +12,7 @@ const AccountForm = ({ handleClose, isMakingNewAccount }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Box
+      <Paper
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -126,7 +126,7 @@ const AccountForm = ({ handleClose, isMakingNewAccount }) => {
             </Button>
           )}
         </div>
-      </Box>
+      </Paper>
     </form>
   );
 };

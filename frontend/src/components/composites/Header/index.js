@@ -1,11 +1,4 @@
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Tabs,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { AppBar, Box, Toolbar, Tabs, Stack, Typography } from "@mui/material";
 import {
   LocalLibrary,
   Home,

@@ -8,6 +8,7 @@ import {
   CardMedia,
   Typography,
   Tooltip,
+  Paper,
 } from "@mui/material";
 import RecipeCardModal from "./RecipeCardModal";
 import StarIcon from "@mui/icons-material/Star";
@@ -57,19 +58,21 @@ export default function RecipeCard(props) {
           alignItems: "end",
         }}
       >
-        <Tooltip title={starred ? "Un-Star" : "Star"} placement="right-start">
-          <IconButton
-            size="small"
-            color={starred ? "error" : "primary"}
-            variant="outlined"
-            sx={{ border: 2 }}
-            onClick={() => {
-              setStarred(!starred);
-            }}
-          >
-            {starred ? <CancelIcon /> : <StarIcon />}
-          </IconButton>
-        </Tooltip>
+        <Paper sx={{ borderRadius: "50%" }}>
+          <Tooltip title={starred ? "Un-Star" : "Star"} placement="right-start">
+            <IconButton
+              size="small"
+              color={starred ? "error" : "primary"}
+              variant="outlined"
+              sx={{ border: 2 }}
+              onClick={() => {
+                setStarred(!starred);
+              }}
+            >
+              {starred ? <CancelIcon /> : <StarIcon />}
+            </IconButton>
+          </Tooltip>
+        </Paper>
       </CardActions>
       <RecipeCardModal
         isOpen={modalOpen}

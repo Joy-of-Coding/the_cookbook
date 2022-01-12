@@ -4,7 +4,7 @@ import AutocompleteSearch from "./utility/AutocompleteSearch";
 
 export default function DataDisplay(props) {
   return (
-    <Paper
+    <Box
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -49,23 +49,15 @@ export default function DataDisplay(props) {
             >
               {props.data.map((recipe, index) => {
                 return (
-                  <>
-                    <Grid key={`recipe-${index}`} item>
-                      <RecipeCard {...recipe} />
-                    </Grid>
-                    <Grid key={`recipe-${index}`} item>
-                      <RecipeCard {...recipe} />
-                    </Grid>
-                    <Grid key={`recipe-${index}`} item>
-                      <RecipeCard {...recipe} />
-                    </Grid>
-                  </>
+                  <Grid key={`recipe-${index}`} item>
+                    <RecipeCard {...recipe} />
+                  </Grid>
                 );
               })}
             </Grid>
           </Paper>
         </>
       )}
-    </Paper>
+    </Box>
   );
 }

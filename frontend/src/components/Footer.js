@@ -1,8 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 export default function Footer(props) {
   return (
-    <Box
+    <Paper
       sx={{
         width: 1,
         minHeight: "180px",
@@ -18,6 +18,6 @@ export default function Footer(props) {
       <Typography variant="h5" color="#b6b6db">
         © 2022 Joy of Coding
       </Typography>
-    </Box>
+    </Paper>
   );
 }
