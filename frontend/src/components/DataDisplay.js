@@ -1,8 +1,12 @@
 import { Grid, Box, Alert, AlertTitle, Paper } from "@mui/material";
+import { useState } from "react";
 import RecipeCard from "./composites/RecipeCard";
 import AutocompleteSearch from "./utility/AutocompleteSearch";
 
 export default function DataDisplay(props) {
+  const [enteredQuery, setEnteredQuery] = useState(""); // value the user has entered into the box (by pressing enter)
+  const [inputValue, setInputValue] = useState(""); // the string currently in the input box (updated without the user formally submitting it via enter)
+
   return (
     <Box
       sx={{
@@ -37,23 +41,42 @@ export default function DataDisplay(props) {
             }}
           >
             <AutocompleteSearch
+              value={enteredQuery}
+              onChange={(event, newValue) => {
+                setEnteredQuery(newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newValue) => {
+                setInputValue(newValue);
+              }}
               autocompleteOptions={props.data.map((recipe) => recipe.title)}
             />
           </Paper>
-          <Paper sx={{ height: "600px", overflowY: "scroll", m: "32px" }}>
+          <Paper
+            sx={{
+              height: "600px",
+              width: "95%",
+              m: "2%",
+              overflowY: "scroll",
+            }}
+          >
             <Grid
               container
               spacing={4}
               justifyContent="space-around"
               padding={4}
             >
-              {props.data.map((recipe, index) => {
-                return (
-                  <Grid key={`recipe-${index}`} item>
-                    <RecipeCard {...recipe} />
-                  </Grid>
-                );
-              })}
+              {props.data
+                .filter((recipe) =>
+                  recipe.title.toLowerCase().includes(inputValue.toLowerCase())
+                )
+                .map((recipe, index) => {
+                  return (
+                    <Grid key={`recipe-${index}`} item>
+                      <RecipeCard {...recipe} />
+                    </Grid>
+                  );
+                })}
             </Grid>
           </Paper>
         </>
