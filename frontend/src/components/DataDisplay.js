@@ -1,10 +1,10 @@
-import { Grid, Box, Alert, AlertTitle } from "@mui/material";
+import { Grid, Box, Alert, AlertTitle, Paper } from "@mui/material";
 import RecipeCard from "./composites/RecipeCard";
 import AutocompleteSearch from "./utility/AutocompleteSearch";
 
 export default function DataDisplay(props) {
   return (
-    <Box
+    <Paper
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -14,7 +14,10 @@ export default function DataDisplay(props) {
         justifyContent: "center",
         alignItems: "center",
         alignContent: "center",
-        p: 2,
+        border: 2,
+        borderColor: "primary.main",
+        borderRadius: 4,
+        marginTop: "42px",
       }}
     >
       {!(props.data && props.data.length > 0) ? (
@@ -25,29 +28,44 @@ export default function DataDisplay(props) {
         </Alert>
       ) : (
         <>
-          <Box
+          <Paper
             sx={{
               display: "flex",
-              width: "100%",
               justifyContent: "end",
-              pb: 2,
+              mt: -4,
+              bgcolor: "white",
             }}
           >
             <AutocompleteSearch
               autocompleteOptions={props.data.map((recipe) => recipe.title)}
             />
-          </Box>
-          <Grid container spacing={12} justifyContent="center">
-            {props.data.map((recipe, index) => {
-              return (
-                <Grid key={`recipe-${index}`} item>
-                  <RecipeCard {...recipe} />
-                </Grid>
-              );
-            })}
-          </Grid>
+          </Paper>
+          <Paper sx={{ height: "600px", overflowY: "scroll", m: "32px" }}>
+            <Grid
+              container
+              spacing={4}
+              justifyContent="space-around"
+              padding={4}
+            >
+              {props.data.map((recipe, index) => {
+                return (
+                  <>
+                    <Grid key={`recipe-${index}`} item>
+                      <RecipeCard {...recipe} />
+                    </Grid>
+                    <Grid key={`recipe-${index}`} item>
+                      <RecipeCard {...recipe} />
+                    </Grid>
+                    <Grid key={`recipe-${index}`} item>
+                      <RecipeCard {...recipe} />
+                    </Grid>
+                  </>
+                );
+              })}
+            </Grid>
+          </Paper>
         </>
       )}
-    </Box>
+    </Paper>
   );
 }

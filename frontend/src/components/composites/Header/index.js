@@ -1,7 +1,6 @@
 import {
   AppBar,
   Box,
-  Button,
   Toolbar,
   Tabs,
   Stack,

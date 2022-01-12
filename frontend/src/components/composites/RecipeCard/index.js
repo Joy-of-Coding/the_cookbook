@@ -19,7 +19,16 @@ export default function RecipeCard(props) {
   let borderStyle = starred ? "primary.main" : "transparent";
 
   return (
-    <Card sx={{ maxWidth: 345, border: 3, borderColor: borderStyle }}>
+    <Card
+      sx={{
+        maxWidth: 345,
+        border: 3,
+        borderColor: borderStyle,
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <CardActionArea
         onClick={() => {
           setModalOpen(true);
@@ -40,7 +49,14 @@ export default function RecipeCard(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
+      <CardActions
+        sx={{
+          display: "flex",
+          flexGrow: 1,
+          justifyContent: "end",
+          alignItems: "end",
+        }}
+      >
         <Tooltip title={starred ? "Un-Star" : "Star"} placement="right-start">
           <IconButton
             size="small"
