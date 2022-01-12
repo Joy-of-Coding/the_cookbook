@@ -7,7 +7,12 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { LocalLibrary, Home, HelpCenter } from "@mui/icons-material";
+import {
+  LocalLibrary,
+  Home,
+  HelpCenter,
+  AccountBox,
+} from "@mui/icons-material";
 import { useState } from "react";
 import HideOnScroll from "../../utility/HideOnScroll";
 import LinkTab from "./LinkTab";
@@ -60,10 +65,8 @@ export default function Header() {
                 />
                 <LinkTab to="/" icon={<Home />} label="HOME" />
                 <LinkTab to="/help" icon={<HelpCenter />} label="HELP" />
+                <LinkTab to="/login" icon={<AccountBox />} label="LOGIN" />
               </Tabs>
-              <Button color="inherit" href="/login">
-                Login
-              </Button>
             </Stack>
           </Toolbar>
         </AppBar>
