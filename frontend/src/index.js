@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 
-import Header from "./components/Header";
+import Header from "./components/composites/Header";
 import Footer from "./components/Footer";
 import RecipeList from "./pages/RecipeList";
 import Home from "./pages/Home";
