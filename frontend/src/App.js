@@ -15,8 +15,7 @@ import { useAuthContext } from "./hooks/AuthContext";
 import { fetchUserData } from "./services/auth";
 
 export default function App() {
-  const { user } = useAuthContext();
-  const [setUserData] = user;
+  const { setUserData } = useAuthContext();
 
   useEffect(() => {
     fetchUserData(setUserData);

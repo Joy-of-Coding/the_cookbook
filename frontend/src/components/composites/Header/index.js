@@ -25,7 +25,7 @@ import stringAvatar from "../../../utils/stringAvatar";
 
 export default function Header() {
   const [value, setValue] = useState(0);
-  const [userData, setUserData] = useAuthContext();
+  const { userData, setUserData } = useAuthContext();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
