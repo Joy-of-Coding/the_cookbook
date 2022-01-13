@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 import Header from "./components/composites/Header";
 import Footer from "./components/Footer";
@@ -11,36 +11,22 @@ import TestingArea from "./pages/TestingArea";
 import LogIn from "./pages/LogIn";
 import RecipeCRUD from "./pages/RecipeCRUD";
 
-import { AuthContext } from "./hooks/AuthContext";
-import { isAuthenticated } from "./services/Auth";
+import { useAuthContext } from "./hooks/AuthContext";
+import { fetchUserData } from "./services/auth";
 
 export default function App() {
-  const { user, token } = useContext(AuthContext);
-  const [userData, setUserData] = user;
-
-  const fetchUserData = () => {
-    isAuthenticated().then((data) => {
-      if (data.error) {
-        console.error("Error", data.error);
-      } else {
-        setUserData({
-          username: data.username,
-          email: data.email,
-          fname: data.firstName,
-          lname: data.lastName,
-        });
-      }
-    });
-  };
+  const { user } = useAuthContext();
+  const [setUserData] = user;
 
   useEffect(() => {
-    fetchUserData();
+    fetchUserData(setUserData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <BrowserRouter>
-      <Header userData={userData} />
-      <div style={{ minHeight: "70vh", padding: "22px" }}>
+      <Header />
+      <div style={{ minHeight: "75vh" }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/help" element={<Help />} />

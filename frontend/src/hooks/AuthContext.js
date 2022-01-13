@@ -1,21 +1,17 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
+import { emptyUserObject } from "../services/auth";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
+
+export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = (props) => {
-  const [userData, setUserData] = useState({
-    username: "",
-    email: "",
-  });
-
+  const [userData, setUserData] = useState(emptyUserObject);
   const [authToken, setAuthToken] = useState("");
 
   return (
     <AuthContext.Provider
-      value={{
-        user: [userData, setUserData],
-        token: [authToken, setAuthToken],
-      }}
+      value={{ userData, setUserData, authToken, setAuthToken }}
     >
       {props.children}
     </AuthContext.Provider>
