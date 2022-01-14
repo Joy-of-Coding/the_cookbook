@@ -5,7 +5,7 @@ import {
   Tabs,
   Stack,
   Typography,
-  Tab,
+  Button,
   Avatar,
 } from "@mui/material";
 import {
@@ -18,14 +18,23 @@ import { useState } from "react";
 import HideOnScroll from "../../utility/HideOnScroll";
 import LinkTab from "./LinkTab";
 import img_logo from "../../../assets/joc_circle.png";
-import { logOut } from "../../../services/auth";
 import { useAuthContext } from "../../../hooks/AuthContext";
 import getUserString from "../../../utils/getUserString";
 import stringAvatar from "../../../utils/stringAvatar";
+import LogOutConfirmation from "../../forms/LogOutConfirmation";
 
 export default function Header() {
   const [value, setValue] = useState(0);
-  const { userData, setUserData } = useAuthContext();
+  const { userData } = useAuthContext();
+  const [logOutModalOpen, setLogOutModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setLogOutModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setLogOutModalOpen(false);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -64,36 +73,41 @@ export default function Header() {
                   paddingRight: "24px",
                 }}
               >
+                <LinkTab to="/" icon={<Home />} label="HOME" />
                 <LinkTab
                   to="/recipes"
                   icon={<LocalLibrary />}
                   label="RECIPES"
                 />
-                <LinkTab to="/" icon={<Home />} label="HOME" />
                 <LinkTab to="/help" icon={<HelpCenter />} label="HELP" />
-                {userData.loggedIn ? (
-                  <Tab
-                    onClick={() => logOut(setUserData)}
-                    icon={<AccountBox />}
-                    label="LOGOUT"
-                  />
-                ) : (
+                {!userData.loggedIn && (
                   <LinkTab to="/login" icon={<AccountBox />} label="LOGIN" />
                 )}
               </Tabs>
               {userData.loggedIn && (
-                <Avatar
-                  {...stringAvatar(getUserString(userData))}
-                  variant="rounded"
-                  sx={{
-                    border: 1,
-                    borderColor: "white",
-                  }}
-                />
+                <Stack sx={{ alignItems: "center", pt: 1 }}>
+                  <Avatar
+                    {...stringAvatar(getUserString(userData))}
+                    variant="rounded"
+                    sx={{
+                      border: 1,
+                      borderColor: "white",
+                    }}
+                  />
+                  <Button
+                    variant="text"
+                    onClick={() => handleModalOpen()}
+                    color="secondary"
+                    sx={{ pt: 1 }}
+                  >
+                    LogOut
+                  </Button>
+                </Stack>
               )}
             </Stack>
           </Toolbar>
         </AppBar>
+        <LogOutConfirmation onClose={handleModalClose} open={logOutModalOpen} />
       </Box>
     </HideOnScroll>
   );
