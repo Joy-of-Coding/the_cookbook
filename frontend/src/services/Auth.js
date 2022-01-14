@@ -7,7 +7,7 @@ const emptyUserObject = {
 };
 
 const isAuthenticated = async () => {
-  return await fetch(`/auth/user`, {
+  return await fetch(`/auth/user/`, {
     method: "GET",
     credentials: "include",
   })
@@ -37,7 +37,7 @@ const fetchUserData = (setUserData) => {
 const logIn = async (userCredentials, setUserData) => {
   return await fetch(`/auth/login/`, {
     method: "POST",
-    credentials: "omit",
+    credentials: "include",
     body: JSON.stringify(userCredentials),
     headers: {
       "Content-Type": "application/json",
@@ -46,10 +46,13 @@ const logIn = async (userCredentials, setUserData) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      // set auth token
-      // set refresh token
-      // set user data
+      setUserData({
+        username: data.user.username,
+        email: data.user.email,
+        fname: data.user.first_name,
+        lname: data.user.last_name,
+        loggedIn: true,
+      });
     })
     .catch((err) => console.error(err));
 };

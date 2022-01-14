@@ -57,8 +57,8 @@ REST_FRAMEWORK = {
 }
 
 REST_USE_JWT = True
-JWT_AUTH_COOKIE = "auth-token"
-JWT_AUTH_REFRESH_COOKIE = "auth-refresh-token"
+JWT_AUTH_COOKIE = "auth_token"
+JWT_AUTH_REFRESH_COOKIE = "auth_refresh_token"
 
 SITE_ID = 1
 
