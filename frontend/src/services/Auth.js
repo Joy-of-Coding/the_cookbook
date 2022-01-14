@@ -9,15 +9,19 @@ const emptyUserObject = {
 const isAuthenticated = async () => {
   return await fetch(`/auth/user`, {
     method: "GET",
+    credentials: "include",
   })
-    .then((response) => response.json())
+    .then((response) => {
+      return response.json();
+    })
     .catch((err) => console.error(err));
 };
 
 const fetchUserData = (setUserData) => {
   isAuthenticated().then((data) => {
-    if (data.error) {
-      console.error("Error", data.error);
+    if (!data.username) {
+      console.error("Error Occured: ", data.detail);
+      setUserData(emptyUserObject);
     } else {
       setUserData({
         username: data.username,
@@ -33,20 +37,19 @@ const fetchUserData = (setUserData) => {
 const logIn = async (userCredentials, setUserData) => {
   return await fetch(`/auth/login/`, {
     method: "POST",
+    credentials: "omit",
     body: JSON.stringify(userCredentials),
     headers: {
       "Content-Type": "application/json",
+      Accept: "application/json",
     },
   })
     .then((response) => response.json())
     .then((data) => {
-      setUserData({
-        username: data.username,
-        email: data.email,
-        fname: data.first_name,
-        lname: data.last_name,
-        loggedIn: true,
-      });
+      console.log(data);
+      // set auth token
+      // set refresh token
+      // set user data
     })
     .catch((err) => console.error(err));
 };
@@ -54,6 +57,7 @@ const logIn = async (userCredentials, setUserData) => {
 const logOut = async (setUserData) => {
   return await fetch(`/auth/logout/`, {
     method: "POST",
+    credentials: "include",
   })
     .then((response) => response.json())
     .then(() => {

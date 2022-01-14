@@ -52,6 +52,14 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": ("dj_rest_auth.jwt_auth.JWTCookieAuthentication",)
+}
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = "auth-token"
+JWT_AUTH_REFRESH_COOKIE = "auth-refresh-token"
+
 SITE_ID = 1
 
 MIDDLEWARE = [

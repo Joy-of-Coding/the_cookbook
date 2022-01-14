@@ -7,12 +7,9 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = (props) => {
   const [userData, setUserData] = useState(emptyUserObject);
-  const [authToken, setAuthToken] = useState("");
 
   return (
-    <AuthContext.Provider
-      value={{ userData, setUserData, authToken, setAuthToken }}
-    >
+    <AuthContext.Provider value={{ userData, setUserData }}>
       {props.children}
     </AuthContext.Provider>
   );
