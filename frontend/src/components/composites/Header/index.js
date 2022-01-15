@@ -80,30 +80,29 @@ export default function Header() {
                   label="RECIPES"
                 />
                 <LinkTab to="/help" icon={<HelpCenter />} label="HELP" />
-                {!userData.loggedIn && (
+                {!userData.loggedIn ? (
                   <LinkTab to="/login" icon={<AccountBox />} label="LOGIN" />
+                ) : (
+                  <Stack sx={{ alignItems: "center", pt: 1 }}>
+                    <Avatar
+                      {...stringAvatar(getUserString(userData))}
+                      variant="rounded"
+                      sx={{
+                        border: 1,
+                        borderColor: "white",
+                      }}
+                    />
+                    <Button
+                      variant="text"
+                      onClick={() => handleModalOpen()}
+                      color="secondary"
+                      sx={{ pt: 1 }}
+                    >
+                      LogOut
+                    </Button>
+                  </Stack>
                 )}
               </Tabs>
-              {userData.loggedIn && (
-                <Stack sx={{ alignItems: "center", pt: 1 }}>
-                  <Avatar
-                    {...stringAvatar(getUserString(userData))}
-                    variant="rounded"
-                    sx={{
-                      border: 1,
-                      borderColor: "white",
-                    }}
-                  />
-                  <Button
-                    variant="text"
-                    onClick={() => handleModalOpen()}
-                    color="secondary"
-                    sx={{ pt: 1 }}
-                  >
-                    LogOut
-                  </Button>
-                </Stack>
-              )}
             </Stack>
           </Toolbar>
         </AppBar>
