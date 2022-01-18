@@ -12,7 +12,7 @@ import LogIn from "./pages/LogIn";
 import RecipeCRUD from "./pages/RecipeCRUD";
 
 import { useAuthContext } from "./hooks/AuthContext";
-import { fetchUserData } from "./services/auth";
+import { fetchUserData } from "./services/Auth";
 
 export default function App() {
   const { setUserData } = useAuthContext();

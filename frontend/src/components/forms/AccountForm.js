@@ -2,7 +2,7 @@ import { TextField, Button, Paper } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "../../hooks/AuthContext";
 import { useRef } from "react";
-import { logIn } from "../../services/auth";
+import { logIn } from "../../services/Auth";
 
 // Based on code from: https://levelup.gitconnected.com/using-react-hook-form-with-material-ui-components-ba42ace9507a
 

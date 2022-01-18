@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import { useAuthContext } from "../../hooks/AuthContext";
-import { logOut } from "../../services/auth";
+import { logOut } from "../../services/Auth";
 
 function LogOutConfirmation(props) {
   const { onClose, open } = props;

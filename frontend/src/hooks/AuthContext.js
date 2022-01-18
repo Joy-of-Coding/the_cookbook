@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from "react";
-import { emptyUserObject } from "../services/auth";
+import { emptyUserObject } from "../services/Auth";
 
 const AuthContext = createContext();
 
