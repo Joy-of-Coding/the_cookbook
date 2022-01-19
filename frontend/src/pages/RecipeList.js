@@ -1,22 +1,12 @@
 import { useState, useEffect } from "react";
 import DataDisplay from "../components/DataDisplay";
+import { fetchAllRecipes } from "../services/Recipes";
 
 export default function RecipeList() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetch("/api/recipes")
-      .then((response) => {
-        if (response.status > 400) {
-          return setRecipes(() => {
-            return { placeholder: "Something went wrong!" };
-          });
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setRecipes(data);
-      });
+    fetchAllRecipes(setRecipes);
   }, []);
 
   return (
