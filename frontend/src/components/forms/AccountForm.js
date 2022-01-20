@@ -2,19 +2,21 @@ import { TextField, Button, Paper } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "../../hooks/AuthContext";
 import { useRef } from "react";
-import { logIn } from "../../services/Auth";
+import { logIn, register } from "../../services/Auth";
 
 // Based on code from: https://levelup.gitconnected.com/using-react-hook-form-with-material-ui-components-ba42ace9507a
 
 const AccountForm = ({ isMakingNewAccount }) => {
   const { handleSubmit, control, watch } = useForm();
-  const { userData, setUserData } = useAuthContext();
+  const { setUserData } = useAuthContext();
   const password = useRef({});
-  password.current = watch("password", "");
+  password.current = watch("password1", "");
 
   const onSubmit = (data) => {
     if (!isMakingNewAccount) {
       logIn(data, setUserData);
+    } else {
+      register(data, setUserData);
     }
   };
 
@@ -71,7 +73,7 @@ const AccountForm = ({ isMakingNewAccount }) => {
           />
         )}
         <Controller
-          name="password"
+          name="password1"
           control={control}
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (

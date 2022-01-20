@@ -34,6 +34,30 @@ const fetchUserData = (setUserData) => {
   });
 };
 
+const register = async (userCredentials, setUserData) => {
+  // very bare bones: does not have much error handling at all
+  return await fetch(`/auth/registration/`, {
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify(userCredentials),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      setUserData({
+        username: data.user.username,
+        email: data.user.email,
+        fname: data.user.first_name,
+        lname: data.user.last_name,
+        loggedIn: true,
+      });
+    })
+    .catch((err) => console.error(err));
+};
+
 const logIn = async (userCredentials, setUserData) => {
   return await fetch(`/auth/login/`, {
     method: "POST",
@@ -69,4 +93,11 @@ const logOut = async (setUserData) => {
     .catch((err) => console.error(err));
 };
 
-export { emptyUserObject, fetchUserData, isAuthenticated, logIn, logOut };
+export {
+  emptyUserObject,
+  fetchUserData,
+  isAuthenticated,
+  register,
+  logIn,
+  logOut,
+};
