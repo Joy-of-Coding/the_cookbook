@@ -1,9 +1,12 @@
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Box, Button } from "@mui/material";
 import AccountForm from "../components/forms/AccountForm";
 
 export default function LogIn() {
   const [registering, setRegistering] = useState(false);
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
   return (
     <>
@@ -16,6 +19,10 @@ export default function LogIn() {
           minHeight: "600px",
         }}
       >
+        {from !== "/" && (
+          <p>You must be authenticated to view the page at {from}</p>
+        )}
+
         <AccountForm isMakingNewAccount={registering} />
 
         <Button
