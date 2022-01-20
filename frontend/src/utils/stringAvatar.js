@@ -1,11 +1,14 @@
 import stringToColor from "./stringToColor";
 
-function stringAvatar(name) {
+function stringAvatar(userString) {
   return {
     sx: {
-      bgcolor: stringToColor(name),
+      bgcolor: stringToColor(userString),
     },
-    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+    children:
+      userString.indexOf(" ") > -1
+        ? `${userString.split(" ")[0][0]}${userString.split(" ")[1][0]}`
+        : `${userString[0]}${userString[1]}`,
   };
 }
 

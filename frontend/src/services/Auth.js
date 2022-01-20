@@ -59,6 +59,11 @@ const register = async (userCredentials, setUserData) => {
 };
 
 const logIn = async (userCredentials, setUserData) => {
+  if (userCredentials.password1) {
+    // the login endpoints requests 'password', but register requests 'password1', hence why we have this extra piece of code here
+    userCredentials.password = userCredentials.password1;
+    delete userCredentials.password1;
+  }
   return await fetch(`/auth/login/`, {
     method: "POST",
     credentials: "include",

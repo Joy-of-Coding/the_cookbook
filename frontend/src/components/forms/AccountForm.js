@@ -1,4 +1,5 @@
 import { TextField, Button, Paper } from "@mui/material";
+import { Navigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "../../hooks/AuthContext";
 import { useRef } from "react";
@@ -8,7 +9,7 @@ import { logIn, register } from "../../services/Auth";
 
 const AccountForm = ({ isMakingNewAccount }) => {
   const { handleSubmit, control, watch } = useForm();
-  const { setUserData } = useAuthContext();
+  const { userData, setUserData } = useAuthContext();
   const password = useRef({});
   password.current = watch("password1", "");
 
@@ -19,6 +20,10 @@ const AccountForm = ({ isMakingNewAccount }) => {
       register(data, setUserData);
     }
   };
+
+  if (userData.loggedIn) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
