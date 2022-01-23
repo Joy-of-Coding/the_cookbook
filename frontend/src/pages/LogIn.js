@@ -1,12 +1,24 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Box, Button } from "@mui/material";
 import AccountForm from "../components/forms/AccountForm";
+import { useAuthContext } from "../hooks/AuthContext";
 
 export default function LogIn() {
   const [registering, setRegistering] = useState(false);
-  let location = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const auth = useAuthContext();
+
   let from = location.state?.from?.pathname || "/";
+
+  const handleFormSubmit = (data) => {
+    let actionFunction = !registering ? auth.signIn : auth.signOut;
+
+    actionFunction(data, () => {
+      navigate(from, { replace: true });
+    });
+  };
 
   return (
     <>
@@ -23,7 +35,10 @@ export default function LogIn() {
           <p>You must be authenticated to view the page at {from}</p>
         )}
 
-        <AccountForm isMakingNewAccount={registering} from={from} />
+        <AccountForm
+          isMakingNewAccount={registering}
+          onSubmit={handleFormSubmit}
+        />
 
         <Button
           sx={{ textAlign: "center", py: 1, mt: 2 }}

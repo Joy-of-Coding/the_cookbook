@@ -31,7 +31,11 @@ export default function App() {
           <Route path="/help" element={<Help />} />
           <Route
             path="/recipes"
-            element={<PrivateRoute to={<RecipeList />} />}
+            element={
+              <PrivateRoute>
+                <RecipeList />
+              </PrivateRoute>
+            }
           />
           <Route path="/testing" element={<TestingArea />} />
           <Route path="/login" element={<LogIn />} />

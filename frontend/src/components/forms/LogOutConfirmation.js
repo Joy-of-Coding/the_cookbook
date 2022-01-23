@@ -6,12 +6,13 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/AuthContext";
-import { logOut } from "../../services/Auth";
 
 function LogOutConfirmation(props) {
   const { onClose, open } = props;
-  const { setUserData } = useAuthContext();
+  const auth = useAuthContext();
+  const navigate = useNavigate();
 
   const handleClose = () => {
     onClose();
@@ -33,7 +34,8 @@ function LogOutConfirmation(props) {
         </Button>
         <Button
           onClick={() => {
-            logOut(setUserData).then(handleClose());
+            auth.signOut(() => navigate("/"));
+            handleClose();
           }}
           color="warning"
         >

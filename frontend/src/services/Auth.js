@@ -34,7 +34,7 @@ const fetchUserData = (setUserData) => {
   });
 };
 
-const register = async (userCredentials, setUserData) => {
+const register = async (userCredentials, setUserData, callback) => {
   // very bare bones: does not have much error handling at all
   return await fetch(`/auth/registration/`, {
     method: "POST",
@@ -54,11 +54,12 @@ const register = async (userCredentials, setUserData) => {
         lname: data.user.last_name,
         loggedIn: true,
       });
+      callback();
     })
     .catch((err) => console.error(err));
 };
 
-const logIn = async (userCredentials, setUserData) => {
+const signIn = async (userCredentials, setUserData, callback) => {
   if (userCredentials.password1) {
     // the login endpoints requests 'password', but register requests 'password1', hence why we have this extra piece of code here
     userCredentials.password = userCredentials.password1;
@@ -82,11 +83,12 @@ const logIn = async (userCredentials, setUserData) => {
         lname: data.user.last_name,
         loggedIn: true,
       });
+      callback();
     })
     .catch((err) => console.error(err));
 };
 
-const logOut = async (setUserData) => {
+const signOut = async (setUserData, callback) => {
   return await fetch(`/auth/logout/`, {
     method: "POST",
     credentials: "include",
@@ -94,6 +96,7 @@ const logOut = async (setUserData) => {
     .then((response) => response.json())
     .then(() => {
       setUserData(emptyUserObject);
+      callback();
     })
     .catch((err) => console.error(err));
 };
@@ -103,6 +106,6 @@ export {
   fetchUserData,
   isAuthenticated,
   register,
-  logIn,
-  logOut,
+  signIn,
+  signOut,
 };
