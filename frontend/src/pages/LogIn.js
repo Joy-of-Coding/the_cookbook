@@ -23,7 +23,7 @@ export default function LogIn() {
           <p>You must be authenticated to view the page at {from}</p>
         )}
 
-        <AccountForm isMakingNewAccount={registering} />
+        <AccountForm isMakingNewAccount={registering} from={from} />
 
         <Button
           sx={{ textAlign: "center", py: 1, mt: 2 }}

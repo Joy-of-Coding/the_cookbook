@@ -1,5 +1,4 @@
 import { TextField, Button, Paper } from "@mui/material";
-import { Navigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "../../hooks/AuthContext";
 import { useRef } from "react";
@@ -20,10 +19,6 @@ const AccountForm = ({ isMakingNewAccount }) => {
       register(data, setUserData);
     }
   };
-
-  if (userData.loggedIn) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
