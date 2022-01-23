@@ -61,7 +61,9 @@ export default function Header() {
             </Box>
             <Stack direction="row" alignItems="center" spacing={8}>
               <Tabs
-                value={location.pathname}
+                value={
+                  location.pathname === "/login" ? false : location.pathname
+                }
                 aria-label="nav tabs"
                 textColor="secondary"
                 indicatorColor="secondary"
@@ -82,34 +84,35 @@ export default function Header() {
                   icon={<HelpCenter />}
                   label="HELP"
                 />
-                {!userData.loggedIn ? (
+                {!userData.loggedIn && (
                   <LinkTab
                     to="/login"
                     value="/login"
                     icon={<AccountBox />}
                     label="LOGIN"
                   />
-                ) : (
-                  <Stack sx={{ alignItems: "center", pt: 1 }}>
-                    <Avatar
-                      {...stringAvatar(getUserString(userData))}
-                      variant="rounded"
-                      sx={{
-                        border: 1,
-                        borderColor: "white",
-                      }}
-                    />
-                    <Button
-                      variant="text"
-                      onClick={() => handleModalOpen()}
-                      color="secondary"
-                      sx={{ pt: 1 }}
-                    >
-                      LogOut
-                    </Button>
-                  </Stack>
                 )}
               </Tabs>
+              {userData.loggedIn && (
+                <Stack sx={{ alignItems: "center", pt: 1 }}>
+                  <Avatar
+                    {...stringAvatar(getUserString(userData))}
+                    variant="rounded"
+                    sx={{
+                      border: 1,
+                      borderColor: "white",
+                    }}
+                  />
+                  <Button
+                    variant="text"
+                    onClick={() => handleModalOpen()}
+                    color="secondary"
+                    sx={{ pt: 1 }}
+                  >
+                    LogOut
+                  </Button>
+                </Stack>
+              )}
             </Stack>
           </Toolbar>
         </AppBar>
