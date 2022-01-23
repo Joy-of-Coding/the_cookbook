@@ -14,6 +14,7 @@ import {
   HelpCenter,
   AccountBox,
 } from "@mui/icons-material";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import HideOnScroll from "../../utility/HideOnScroll";
 import LinkTab from "./LinkTab";
@@ -24,7 +25,7 @@ import stringAvatar from "../../../utils/stringAvatar";
 import LogOutConfirmation from "../../forms/LogOutConfirmation";
 
 export default function Header() {
-  const [value, setValue] = useState(0);
+  const location = useLocation();
   const { userData } = useAuthContext();
   const [logOutModalOpen, setLogOutModalOpen] = useState(false);
 
@@ -34,10 +35,6 @@ export default function Header() {
 
   const handleModalClose = () => {
     setLogOutModalOpen(false);
-  };
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
   };
 
   return (
@@ -64,8 +61,7 @@ export default function Header() {
             </Box>
             <Stack direction="row" alignItems="center" spacing={8}>
               <Tabs
-                value={value}
-                onChange={handleChange}
+                value={location.pathname}
                 aria-label="nav tabs"
                 textColor="secondary"
                 indicatorColor="secondary"
@@ -73,15 +69,26 @@ export default function Header() {
                   paddingRight: "24px",
                 }}
               >
-                <LinkTab to="/" icon={<Home />} label="HOME" />
+                <LinkTab to="/" value="/" icon={<Home />} label="HOME" />
                 <LinkTab
                   to="/recipes"
+                  value="/recipes"
                   icon={<LocalLibrary />}
                   label="RECIPES"
                 />
-                <LinkTab to="/help" icon={<HelpCenter />} label="HELP" />
+                <LinkTab
+                  to="/help"
+                  value="/help"
+                  icon={<HelpCenter />}
+                  label="HELP"
+                />
                 {!userData.loggedIn ? (
-                  <LinkTab to="/login" icon={<AccountBox />} label="LOGIN" />
+                  <LinkTab
+                    to="/login"
+                    value="/login"
+                    icon={<AccountBox />}
+                    label="LOGIN"
+                  />
                 ) : (
                   <Stack sx={{ alignItems: "center", pt: 1 }}>
                     <Avatar
