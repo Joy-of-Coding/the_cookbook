@@ -13,7 +13,7 @@ export default function LogIn() {
   let from = location.state?.from?.pathname || "/";
 
   const handleFormSubmit = (data) => {
-    let actionFunction = !registering ? auth.signIn : auth.signOut;
+    let actionFunction = !registering ? auth.signIn : auth.register;
 
     actionFunction(data, () => {
       navigate(from, { replace: true });
