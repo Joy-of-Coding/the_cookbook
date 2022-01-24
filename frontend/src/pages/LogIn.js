@@ -20,6 +20,10 @@ export default function LogIn() {
     });
   };
 
+  if (auth.userData.loggedIn) {
+    navigate("/", { replace: true });
+  }
+
   return (
     <>
       <Box
