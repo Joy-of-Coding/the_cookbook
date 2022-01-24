@@ -100,6 +100,7 @@ const RecipeCreationForm = ({ handleClose }) => {
         border: 2,
         borderRadius: 2,
         borderColor: "primary.main",
+        bgcolor: "white",
       }}
     >
       <Typography variant="h5">
