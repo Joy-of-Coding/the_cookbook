@@ -14,7 +14,7 @@ import {
   HelpCenter,
   AccountBox,
 } from "@mui/icons-material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import HideOnScroll from "../../utility/HideOnScroll";
 import LinkTab from "./LinkTab";
@@ -26,6 +26,7 @@ import LogOutConfirmation from "../../forms/LogOutConfirmation";
 
 export default function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { userData } = useAuthContext();
   const [logOutModalOpen, setLogOutModalOpen] = useState(false);
 
@@ -102,6 +103,7 @@ export default function Header() {
                       border: 1,
                       borderColor: "white",
                     }}
+                    onClick={() => navigate("/profile")}
                   />
                   <Button
                     variant="text"

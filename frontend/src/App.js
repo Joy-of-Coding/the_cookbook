@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Help from "./pages/Help";
 import TestingArea from "./pages/TestingArea";
 import LogIn from "./pages/LogIn";
+import Profile from "./pages/Profile";
 
 import { useAuthContext } from "./hooks/AuthContext";
 import { fetchUserData } from "./services/Auth";
@@ -34,6 +35,14 @@ export default function App() {
             element={
               <PrivateRoute>
                 <RecipeList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
               </PrivateRoute>
             }
           />
