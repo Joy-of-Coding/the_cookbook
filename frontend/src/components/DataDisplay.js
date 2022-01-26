@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import RecipeCard from "./composites/RecipeCard";
 import AutocompleteSearch from "./utility/AutocompleteSearch";
-import RecipeCreationForm from "./forms/RecipeCreationForm";
+import RecipeCreationForm from "./composites/forms/RecipeCreationForm";
 
 export default function DataDisplay({ data, loading, errors }) {
   const [enteredQuery, setEnteredQuery] = useState(""); // value the user has entered into the box (by pressing enter)

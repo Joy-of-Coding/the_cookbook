@@ -1,5 +1,5 @@
 import { Chip } from "@mui/material";
-import ListInput from "../../ListInput";
+import ListInput from "../../../ListInput";
 
 export default function RecipeStepsInput() {
   return (

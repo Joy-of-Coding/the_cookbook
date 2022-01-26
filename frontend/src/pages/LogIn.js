@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Box, Button } from "@mui/material";
-import AccountForm from "../components/forms/AccountForm";
+import AccountForm from "../components/composites/forms/AccountForm";
 import { useAuthContext } from "../hooks/AuthContext";
 
 export default function LogIn() {

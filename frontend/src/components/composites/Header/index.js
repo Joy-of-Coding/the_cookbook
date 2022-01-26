@@ -22,7 +22,7 @@ import img_logo from "../../../assets/joc_circle.png";
 import { useAuthContext } from "../../../hooks/AuthContext";
 import getUserString from "../../../utils/getUserString";
 import stringAvatar from "../../../utils/stringAvatar";
-import LogOutConfirmation from "../../forms/LogOutConfirmation";
+import LogOutConfirmation from "../forms/LogOutConfirmation";
 
 export default function Header() {
   const location = useLocation();
