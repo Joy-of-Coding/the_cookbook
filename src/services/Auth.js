@@ -13,7 +13,7 @@ const csrfToken = getCookie("csrftoken");
 const isAuthenticated = async () => {
   return await fetch(`/auth/user/`, {
     method: "GET",
-    credentials: "include",
+    credentials: "same-origin",
   })
     .then((response) => {
       return response.json();
@@ -42,12 +42,11 @@ const register = async (userCredentials, setUserData, callback) => {
   // very bare bones: does not have much error handling at all
   return await fetch(`/auth/registration/`, {
     method: "POST",
-    credentials: "include",
+    credentials: "same-origin",
     body: JSON.stringify(userCredentials),
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "X-CSRF-TOKEN": csrfToken,
     },
   })
     .then((response) => response.json())
@@ -72,12 +71,11 @@ const signIn = async (userCredentials, setUserData, callback) => {
   }
   return await fetch(`/auth/login/`, {
     method: "POST",
-    credentials: "include",
+    credentials: "same-origin",
     body: JSON.stringify(userCredentials),
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "X-CSRF-TOKEN": csrfToken,
     },
   })
     .then((response) => response.json())
@@ -97,8 +95,7 @@ const signIn = async (userCredentials, setUserData, callback) => {
 const signOut = async (setUserData, callback) => {
   return await fetch(`/auth/logout/`, {
     method: "POST",
-    credentials: "include",
-    "X-CSRF-TOKEN": csrfToken,
+    credentials: "same-origin",
   })
     .then((response) => response.json())
     .then(() => {
