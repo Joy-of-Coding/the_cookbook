@@ -13,7 +13,8 @@ const csrfToken = getCookie("csrftoken");
 const isAuthenticated = async () => {
   return await fetch(`/auth/user/`, {
     method: "GET",
-    credentials: "same-origin",
+    credentials: "include",
+    "X-CSRFToken": csrfToken,
   })
     .then((response) => {
       return response.json();
@@ -47,6 +48,7 @@ const register = async (userCredentials, setUserData, callback) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "X-CSRFToken": csrfToken,
     },
   })
     .then((response) => response.json())
@@ -76,6 +78,7 @@ const signIn = async (userCredentials, setUserData, callback) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "X-CSRFToken": csrfToken,
     },
   })
     .then((response) => response.json())
@@ -96,6 +99,7 @@ const signOut = async (setUserData, callback) => {
   return await fetch(`/auth/logout/`, {
     method: "POST",
     credentials: "same-origin",
+    "X-CSRFToken": csrfToken,
   })
     .then((response) => response.json())
     .then(() => {
