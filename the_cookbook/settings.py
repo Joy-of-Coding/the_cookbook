@@ -26,7 +26,12 @@ SECRET_KEY = "django-insecure-vnbhf5m-^n(q8#lsv#jzx5j@^bc^$-2n@vn5rtyn$u(z*g=my(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["joc-cookbook.herokuapp.com", "127.0.0.1:8000", "localhost"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.joc-cookbook.com",
+    "http://*.127.0.0.1:8000/",
+    "http://*.localhost:8000/",
+]
 
 # Application definition
 
@@ -149,8 +154,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "build/static")]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
 
 AUTH_USER_MODEL = "users.CustomUser"
 
