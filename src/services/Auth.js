@@ -1,3 +1,5 @@
+import { getCookie } from "../utils.js";
+
 const emptyUserObject = {
   username: "",
   email: "",
@@ -5,6 +7,8 @@ const emptyUserObject = {
   lname: "",
   loggedIn: false,
 };
+
+const csrfToken = getCookie("csrftoken");
 
 const isAuthenticated = async () => {
   return await fetch(`/auth/user/`, {
@@ -43,6 +47,7 @@ const register = async (userCredentials, setUserData, callback) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "X-CSRF-TOKEN": csrfToken,
     },
   })
     .then((response) => response.json())
@@ -72,6 +77,7 @@ const signIn = async (userCredentials, setUserData, callback) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "X-CSRF-TOKEN": csrfToken,
     },
   })
     .then((response) => response.json())
@@ -92,6 +98,7 @@ const signOut = async (setUserData, callback) => {
   return await fetch(`/auth/logout/`, {
     method: "POST",
     credentials: "include",
+    "X-CSRF-TOKEN": csrfToken,
   })
     .then((response) => response.json())
     .then(() => {
