@@ -1,3 +1,5 @@
+import { getCookie } from "../utils.js";
+
 const emptyUserObject = {
   username: "",
   email: "",
@@ -6,10 +8,13 @@ const emptyUserObject = {
   loggedIn: false,
 };
 
+const csrfToken = getCookie("csrftoken");
+
 const isAuthenticated = async () => {
   return await fetch(`/auth/user/`, {
     method: "GET",
     credentials: "include",
+    "X-CSRFToken": csrfToken,
   })
     .then((response) => {
       return response.json();
@@ -38,11 +43,12 @@ const register = async (userCredentials, setUserData, callback) => {
   // very bare bones: does not have much error handling at all
   return await fetch(`/auth/registration/`, {
     method: "POST",
-    credentials: "include",
+    credentials: "same-origin",
     body: JSON.stringify(userCredentials),
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "X-CSRFToken": csrfToken,
     },
   })
     .then((response) => response.json())
@@ -67,11 +73,12 @@ const signIn = async (userCredentials, setUserData, callback) => {
   }
   return await fetch(`/auth/login/`, {
     method: "POST",
-    credentials: "include",
+    credentials: "same-origin",
     body: JSON.stringify(userCredentials),
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "X-CSRFToken": csrfToken,
     },
   })
     .then((response) => response.json())
@@ -91,7 +98,8 @@ const signIn = async (userCredentials, setUserData, callback) => {
 const signOut = async (setUserData, callback) => {
   return await fetch(`/auth/logout/`, {
     method: "POST",
-    credentials: "include",
+    credentials: "same-origin",
+    "X-CSRFToken": csrfToken,
   })
     .then((response) => response.json())
     .then(() => {
