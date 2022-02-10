@@ -13,6 +13,8 @@ export default function Footer(props) {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
+        bottom: 0,
+        position: "fixed",
       }}
     >
       <Typography variant="h5" color="#b6b6db">
