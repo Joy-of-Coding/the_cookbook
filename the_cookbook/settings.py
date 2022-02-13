@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     # Local Apps
     "recipes.apps.RecipesConfig",
     "users.apps.UsersConfig",
+    "herald.apps.HeraldConfig",
 ]
 
 REST_FRAMEWORK = {
