@@ -12,3 +12,8 @@ class GetMessageOfTheDay(generics.RetrieveAPIView):
 
     def get_object(self, *args, **kwargs):
         return self.queryset.latest("created_at")
+
+
+class CreateMessageOfTheDay(generics.CreateAPIView):
+    queryset = MessageOfTheDay.objects.all()
+    serializer_class = MessageOfTheDaySerializer
