@@ -7,5 +7,5 @@ from .serializers import MessageOfTheDaySerializer
 
 
 class MessageOfTheDayListCreate(generics.ListCreateAPIView):
-    queryset = MessageOfTheDay.objects.all()
+    queryset = MessageOfTheDay.objects.latest("created_at")
     serializer_class = MessageOfTheDaySerializer
