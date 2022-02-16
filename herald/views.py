@@ -6,7 +6,7 @@ from .serializers import MessageOfTheDaySerializer
 # Create your views here.
 
 
-class MessageOfTheDayCreate(generics.RetrieveAPIView):
+class GetMessageOfTheDay(generics.RetrieveAPIView):
     queryset = MessageOfTheDay.objects.all()
     serializer_class = MessageOfTheDaySerializer
 
