@@ -1,13 +1,13 @@
 import { Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import svg_art from "../assets/coding_art.svg";
-import { fetchAllMessagesOfTheDay } from "../services/Herald";
+import { fetchMessageOfTheDay } from "../services/Herald";
 
 export default function Home() {
-  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    fetchAllMessagesOfTheDay(setMessages);
+    fetchMessageOfTheDay(setMessage);
   }, []);
 
   return (
@@ -23,11 +23,7 @@ export default function Home() {
       <h1>Home</h1>
       <img alt="funky illustration" src={svg_art} />
 
-      <Box sx={{ padding: 4 }}>
-        {messages.length !== 0
-          ? messages[messages.length - 1].text
-          : "No messages"}
-      </Box>
+      <Box sx={{ padding: 4 }}>{message ? message.text : "No message"}</Box>
 
       <Box sx={{ width: "50%" }}>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos

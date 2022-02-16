@@ -6,6 +6,9 @@ from .serializers import MessageOfTheDaySerializer
 # Create your views here.
 
 
-class MessageOfTheDayListCreate(generics.ListCreateAPIView):
-    queryset = MessageOfTheDay.objects.latest("created_at")
+class MessageOfTheDayCreate(generics.RetrieveAPIView):
+    queryset = MessageOfTheDay.objects.all()
     serializer_class = MessageOfTheDaySerializer
+
+    def get_object(self, *args, **kwargs):
+        return self.queryset.latest("created_at")
