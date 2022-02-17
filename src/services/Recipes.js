@@ -1,5 +1,5 @@
 const fetchAllRecipes = async (setRecipes) =>
-  fetch("/api/recipes")
+  fetch("/backend/api/recipes")
     .then((response) => {
       if (response.status > 400) {
         return setRecipes(() => {
