@@ -1,5 +1,5 @@
 const fetchMessageOfTheDay = async (setMessage) =>
-  fetch("/herald/motd")
+  fetch("/backend/herald/motd/")
     .then((response) => {
       if (response.status > 400) {
         return setMessage(() => {
@@ -9,7 +9,6 @@ const fetchMessageOfTheDay = async (setMessage) =>
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       setMessage(data);
     });
 
