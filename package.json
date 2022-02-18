@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "proxy": "http://localhost:8000",
   "private": true,
   "homepage": ".",
   "dependencies": {
@@ -16,7 +17,7 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.22.5",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.0",
+    "react-scripts": "^5.0.0",
     "web-vitals": "^2.1.2"
   },
   "devDependencies": {
