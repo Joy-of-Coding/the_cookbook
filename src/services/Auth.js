@@ -11,7 +11,7 @@ const emptyUserObject = {
 const csrfToken = getCookie("csrftoken");
 
 const isAuthenticated = async () => {
-  return await fetch(`/backend/auth/user/`, {
+  return await fetch(`/auth/user/`, {
     method: "GET",
     credentials: "include",
     "X-CSRFToken": csrfToken,
@@ -41,7 +41,7 @@ const fetchUserData = (setUserData) => {
 
 const register = async (userCredentials, setUserData, callback) => {
   // very bare bones: does not have much error handling at all
-  return await fetch(`/backend/auth/registration/`, {
+  return await fetch(`/auth/registration/`, {
     method: "POST",
     credentials: "same-origin",
     body: JSON.stringify(userCredentials),
@@ -71,7 +71,7 @@ const signIn = async (userCredentials, setUserData, callback) => {
     userCredentials.password = userCredentials.password1;
     delete userCredentials.password1;
   }
-  return await fetch(`/backend/auth/login/`, {
+  return await fetch(`/auth/login/`, {
     method: "POST",
     credentials: "same-origin",
     body: JSON.stringify(userCredentials),
@@ -96,7 +96,7 @@ const signIn = async (userCredentials, setUserData, callback) => {
 };
 
 const signOut = async (setUserData, callback) => {
-  return await fetch(`/backend/auth/logout/`, {
+  return await fetch(`/auth/logout/`, {
     method: "POST",
     credentials: "same-origin",
     "X-CSRFToken": csrfToken,
