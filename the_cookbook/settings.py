@@ -54,8 +54,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     # Local Apps
     "recipes.apps.RecipesConfig",
-    "users.apps.UsersConfig",
-    "herald.apps.HeraldConfig",
+    "users.apps.UsersConfig"
 ]
 
 REST_FRAMEWORK = {
