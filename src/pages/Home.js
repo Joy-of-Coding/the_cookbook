@@ -12,14 +12,14 @@ export default function Home() {
         width: "100%",
       }}
     >
-      <h1>Home</h1>
+      <h1>Home Page</h1>
+
+
+      Is this for real?
       <img alt="funky illustration" src={svg_art} />
 
       <Box sx={{ width: "50%" }}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-        blanditiis tenetur unde suscipit, quam beatae rerum inventore
-        consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-        fugiat deleniti? Eum quasi quidem quibusdam.
+        
       </Box>
     </Box>
   );
