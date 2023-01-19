@@ -25,7 +25,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Running The Project
 
-> NOTE! both front and backends has to be running in 2 separate terminals and left running.
+> NOTE! both front and backends have to be running in 2 separate terminals and left running.
 > 1) Run ```python3 manage.py runserver``` to start up the backend server.
 > 2) Run ```npm start``` to start the frontend application.
 > 3) Once the two servers load, you will be able to access the frontend at <http://localhost:3000/> and the backend at <http://localhost:8000/api/recipes/>.
